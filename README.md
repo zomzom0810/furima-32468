@@ -26,6 +26,7 @@
 | category_id      | integer    | null: false                    |
 | status_id        | integer    | null: false                    |
 | delivery_fee_id  | integer    | null: false                    |
+| area_id          | integer    | null: false                    |
 | delivery_days_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             |references  | null: false, foreign key       |
