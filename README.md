@@ -28,40 +28,39 @@
 | delivery_fee_id  | integer    | null: false                    |
 | area_id          | integer    | null: false                    |
 | delivery_days_id | integer    | null: false                    |
-| price            | string     | null: false                    | 
+| price            | integer    | null: false                    | 
 
 
 
 ### Association
 
 - belongs_to :user
-- has_many : buys
+- belongs_to : buys
 
 ## streets テーブル
 
-| Column        | Type    | Options        |
-| ------------- | ------- | -------------- |
-| postal_code   | string  | null: false    |
-| pretectures_id| integer | null: false    |
-| municipality  | string  | null: false    |
-| address       | string  | null: false    |
-| building      | string  |                |
-| phone_number  | string  | null: false    |
-
+| Column        | Type        | Options                  |
+| ------------- | ----------- | ------------------------ |
+| postal_code   | string      | null: false              |
+| pretectures_id| integer     | null: false              |
+| municipality  | string      | null: false              |
+| address       | string      | null: false              |
+| building      | string      |                          |
+| phone_number  | string      | null: false              |
+| buy           | reference   | null: false, foreign key |
 ### Association
 
-- has_one :buys
-- belongs_to :user
+- belongs_to :buys
 
 ##  buys テーブル
-| Column        | Type       | Options                  |
-| ------------- | ---------- | ------------------------ |
-| user_id       | reference  | null: false, foreign key |
-| item_id       | reference  | null: false, foreign key |
+| Column    | Type       | Options                  |
+| ----------| ---------- | ------------------------ |
+| user      | reference  | null: false, foreign key |
+| item      | reference  | null: false, foreign key |
      
 
 ### Association
 
 - belongs_to :user
-- belongs_to :items
-- belongs_to :streets
+- has_one :items
+- has_one :streets
