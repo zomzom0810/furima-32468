@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- has_one : buys
+- has_one : buy
 
 ## streets テーブル
 
@@ -62,5 +62,5 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 - has_one :street
