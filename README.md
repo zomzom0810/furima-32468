@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to : buys
+- has_one : buys
 
 ## streets テーブル
 
@@ -50,7 +50,7 @@
 | buy           | reference   | null: false, foreign key |
 ### Association
 
-- belongs_to :buys
+- belongs_to :buy
 
 ##  buys テーブル
 | Column    | Type       | Options                  |
@@ -62,5 +62,5 @@
 ### Association
 
 - belongs_to :user
-- has_one :items
-- has_one :streets
+- belongs_to :items
+- has_one :street
