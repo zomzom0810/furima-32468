@@ -7,7 +7,6 @@
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| password           | string | null: false               |
 | first_name         | string | null: false               |
 | last_name          | string | null: false               |
 | first_name_kana    | string | null: false               |
@@ -17,7 +16,6 @@
 
 - has_many : buys
 - has_many : items
-- has_one  : streets
 
 ## items テーブル
 
@@ -25,7 +23,7 @@
 | ---------------- | ---------- | ------------------------------ |
 | product_name     | string     | null: false                    |
 | explanation      | text       | null: false                    |
-| category         | string     | null: false                    |
+| category_id      | integer    | null: false                    |
 | status_id        | integer    | null: false                    |
 | delivery_fee_id  | integer    | null: false                    |
 | area_id          | integer    | null: false                    |
@@ -41,7 +39,7 @@
 
 ## streets テーブル
 
-| Column        | Type    | Options ou       |
+| Column        | Type    | Options        |
 | ------------- | ------- | -------------- |
 | postal_code   | string  | null: false    |
 | pretectures_id| integer | null: false    |
@@ -52,6 +50,7 @@
 
 ### Association
 
+- has_one :buys
 - belongs_to :user
 
 ##  buys テーブル
@@ -65,3 +64,4 @@
 
 - belongs_to :user
 - belongs_to :items
+- belongs_to :streets
