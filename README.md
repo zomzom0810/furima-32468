@@ -28,7 +28,8 @@
 | delivery_fee_id  | integer    | null: false                    |
 | area_id          | integer    | null: false                    |
 | delivery_days_id | integer    | null: false                    |
-| price            | integer    | null: false                    | 
+| price            | integer    | null: false                    |
+| user             |references  | null: false, foreign key       |
 
 
 
@@ -47,7 +48,7 @@
 | address       | string      | null: false              |
 | building      | string      |                          |
 | phone_number  | string      | null: false              |
-| buy           | reference   | null: false, foreign key |
+| buy           | references  | null: false, foreign key |
 ### Association
 
 - belongs_to :buy
@@ -55,8 +56,8 @@
 ##  buys テーブル
 | Column    | Type       | Options                  |
 | ----------| ---------- | ------------------------ |
-| user      | reference  | null: false, foreign key |
-| item      | reference  | null: false, foreign key |
+| user      | references | null: false, foreign key |
+| item      | references | null: false, foreign key |
      
 
 ### Association
