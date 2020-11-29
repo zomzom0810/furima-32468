@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  VALID_PASSWORD_REGEX =  /(?=.*\d+.*)(?=.*[a-zA-Z]+.*).*[!@#$%]+.*/
+  VALID_PASSWORD_REGEX =  /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze #半角英数字混合である
   validates :nickname, :birthday, presence: true
   validates :first_name_kana, :last_name_kana, presence: true,
-            format: {with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/}
-  validates :password, format: {with: VALID_PASSWORD_REGEX}
-  validates :first_name,:last_name, presence: true, format: {with: /\A^[ぁ-んァ-ンー－]+\z/}
+            format: {with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: 'にはカタカナを使って入力してください'} #カタカナのみ
+  validates :password, format: {with: VALID_PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'}
+  validates :first_name,:last_name, presence: true, 
+  format: {with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'には『漢字』、『ひらがな』、『かたかな』を使って入力してください'} #漢字カナかな
 end
