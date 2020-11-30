@@ -85,6 +85,36 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
+      it "first_nameに英字が入っていたら登録できない" do
+        @user.first_name = '田中tanaka'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name には『漢字』、『ひらがな』、『かたかな』を使って入力してください")
+      end
+      it "last_nameに英字が入っていたら登録できない" do
+        @user.last_name = '田中tanaka'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name には『漢字』、『ひらがな』、『かたかな』を使って入力してください")
+      end
+      it "first_nameに数字が入っていたら登録できない" do
+        @user.first_name = '田中123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name には『漢字』、『ひらがな』、『かたかな』を使って入力してください")
+      end
+      it "last_nameに数字が入っていたら登録できない" do
+        @user.last_name = '田中123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name には『漢字』、『ひらがな』、『かたかな』を使って入力してください")
+      end
+      it "first_nameに記号が入っていたら登録できない" do
+        @user.first_name = '田中//-'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name には『漢字』、『ひらがな』、『かたかな』を使って入力してください")
+      end
+      it "last_nameに記号が入っていたら登録できない" do
+        @user.last_name = '田中//-'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name には『漢字』、『ひらがな』、『かたかな』を使って入力してください")
+      end
       it "first_name_kanaが空では登録できない" do
         @user.first_name_kana= ''
         @user.valid?
