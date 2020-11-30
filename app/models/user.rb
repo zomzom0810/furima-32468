@@ -13,5 +13,7 @@ class User < ApplicationRecord
     validates :password, format: {with: VALID_PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'}
     validates :first_name,:last_name,
                format: {with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'には『漢字』、『ひらがな』、『かたかな』を使って入力してください'} #漢字カナかな
-end  
+end
+
+    has_many :items
 end
