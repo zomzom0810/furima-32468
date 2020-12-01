@@ -10,8 +10,10 @@ class Item < ApplicationRecord
     has_one_attached :image
 
     with_options presence: true do
-        validates :item_name
-        validates :explanation
+        validates :item_name,
+                  length: { maximum: 40 }
+        validates :explanation,
+                   length: { maximum: 1000}
         validates :category_id
         validates :status_id
         validates :delivery_fee_id
