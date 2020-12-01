@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+  before_action :authenticate_user!, only: :new
 
   def edit
   end
@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
     if Item.create(items_params)
       redirect_to root_path
     else
-      render new_item_path
+      render :new
     end
   end
 
