@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new
-  before_action :set_item, only: [:show, :edit]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.all.order(id: "DESC")
@@ -23,9 +23,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user_id != current_user.id  #アクセス制限ログインユーザー意外の人がurlから直接アクセス
+      redirect_to root_path
+    end
   end
 
   def update
+    if @item.update(items_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private
