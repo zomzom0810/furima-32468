@@ -21,13 +21,13 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| product_name     | string     | null: false                    |
+| item_name        | string     | null: false                    |
 | explanation      | text       | null: false                    |
 | category_id      | integer    | null: false                    |
 | status_id        | integer    | null: false                    |
 | delivery_fee_id  | integer    | null: false                    |
-| pretecture_id    | integer    | null: false                    |
-| delivery_days_id | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| delivery_day_id  | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             |references  | null: false, foreign key       |
 
@@ -43,7 +43,7 @@
 | Column        | Type        | Options                  |
 | ------------- | ----------- | ------------------------ |
 | postal_code   | string      | null: false              |
-| pretecture_id | integer     | null: false              |
+| prefecture_id | integer     | null: false              |
 | municipality  | string      | null: false              |
 | address       | string      | null: false              |
 | building      | string      |                          |
