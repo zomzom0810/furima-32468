@@ -31,25 +31,50 @@ describe Item do
          @item.valid?
          expect(@item.errors.full_messages).to include("Category is not a number")
       end
+      it "category_idが1のとき商品は保存できない" do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+     end
       it "status_idがないと商品は保存できない" do
         @item.status_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Status is not a number")
+      end
+      it "status_idが1のとき商品は保存できない" do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
       it "delivery_fee_idがないと商品は保存できない" do
         @item.delivery_fee_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
+      it "delivery_fee_idが1のとき商品は保存できない" do
+        @item.delivery_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+      end
       it "prefecture_idがないと商品は保存できない" do
         @item.prefecture_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture is not a number")
       end
+      it "prefecture_idが1のとき商品は保存できない" do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+      end
       it "delivery_day_idがないと商品は保存できない" do
         @item.delivery_day_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day can't be blank")
+      end
+      it "delivery_day_idが1のとき商品は保存できない" do
+        @item.delivery_day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
       end
       it "priceがないと商品は保存できない" do
         @item.price = nil
