@@ -21,6 +21,11 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
+      it "item_nameがないと商品は保存できない" do
+        @item.item_name = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item name can't be blank")
+      end
       it "explanationがないと商品は保存できない" do
         @item.explanation = nil
         @item.valid?
