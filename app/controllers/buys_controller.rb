@@ -1,5 +1,6 @@
 class BuysController < ApplicationController
   def index
+    @buy_street = BuyStreet.new
   end
 
   def create
@@ -10,4 +11,9 @@ class BuysController < ApplicationController
     else
       render item_buys_path(buy)
   end
+
+
+  private
+  def buy_params
+    params.require(:buy_street).permit(:postal_code, :prefecture, :municipality, :address, :building, :phone_number)
 end
