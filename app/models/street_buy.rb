@@ -1,10 +1,19 @@
 class StreetBuy
     include ActiveModel::Model
-    attr_accessor :,:...
+    attr_accessor :postal_code, :prefecture, :municipality, :address, :building, :phone_number
   
-    # ここにバリデーションの処理を書く
-  
+    with_options presence: true do
+      validates :postal_code
+      validates :municipality
+      validates :address
+      validates :building
+      validates :phone_number
+    end
+
+    validates :prefecture, numericality: { other_than: 1, message: "can't be blank" }
+
     def save
-      # 各テーブルにデータを保存する処理を書く
+      street = Street.create(postal_code: postal_code, prefecture: prefecture,  municipality: municipality, address: address, building: building, phone_number: phone_number)
+      Buy.create(user_id: user.id, item_id: item.id)
     end
   end
