@@ -1,4 +1,4 @@
-class StreetBuy
+class BuyStreet
     include ActiveModel::Model
     attr_accessor :postal_code, :prefecture, :municipality, :address, :building, :phone_number
   
@@ -13,7 +13,7 @@ class StreetBuy
     validates :prefecture, numericality: { other_than: 1, message: "can't be blank" }
 
     def save
-      street = Street.create(postal_code: postal_code, prefecture: prefecture,  municipality: municipality, address: address, building: building, phone_number: phone_number)
-      Buy.create(user_id: user.id, item_id: item.id)
+      buy = Buy.create(user_id: user.id, item_id: item.id)
+      Street.create(postal_code: postal_code, prefecture: prefecture,  municipality: municipality, address: address, building: building, phone_number: phone_number)
     end
   end
