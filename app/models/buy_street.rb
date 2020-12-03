@@ -6,7 +6,6 @@ class BuyStreet
       validates :postal_code
       validates :municipality
       validates :address
-      validates :building
       validates :phone_number
     end
 
