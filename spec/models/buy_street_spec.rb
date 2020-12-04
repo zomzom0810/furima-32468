@@ -15,6 +15,11 @@ require 'rails_helper'
         @buy_street.valid?
         expect(@buy_street.errors.full_messages).to include("Postal code can't be blank")
       end
+      it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
+        @buy_street.postal_code = "0000000"
+        @buy_street.valid?
+        expect(@buy_street.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
       it 'prefectureが空だと保存できないこと' do
         @buy_street.prefecture = nil
         @buy_street.valid?
@@ -39,6 +44,16 @@ require 'rails_helper'
         @buy_street.phone_number = nil
         @buy_street.valid?
         expect(@buy_street.errors.full_messages).to include("Phone number can't be blank")
+      end
+      it 'phone_numberが11桁以上だと保存できないこと' do
+        @buy_street.phone_number = "1234567891234"
+        @buy_street.valid?
+        expect(@buy_street.errors.full_messages).to include("Phone number は11桁以内の半角数字で入力してくだい")
+      end
+      it 'phone_number（-）が入っていると保存できないこと' do
+        @buy_street.phone_number = "123456-7891234"
+        @buy_street.valid?
+        expect(@buy_street.errors.full_messages).to include("Phone number は11桁以内の半角数字で入力してくだい")
       end
     end
   end
