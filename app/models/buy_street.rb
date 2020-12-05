@@ -8,7 +8,8 @@ class BuyStreet
       validates :municipality
       validates :address
       validates :phone_number,
-                format: {with: /\A\d{11}\z/, message: "は11桁以内の半角数字で入力してくだい"}         
+                format: {with: /\A\d{11}\z/, message: "は11桁以内の半角数字で入力してくだい"}
+      validates :token                  
     end
 
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
