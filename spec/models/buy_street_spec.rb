@@ -10,6 +10,11 @@ require 'rails_helper'
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@buy_street).to be_valid
       end
+      it '建物名が抜けていても登録できること' do
+        @buy_street.building = nil 
+        expect(@buy_street).to be_valid
+      end
+
       it 'postal_code が空だと保存できないこと' do
         @buy_street.postal_code = nil
         @buy_street.valid?
@@ -50,8 +55,13 @@ require 'rails_helper'
         @buy_street.valid?
         expect(@buy_street.errors.full_messages).to include("Phone number は11桁以内の半角数字で入力してくだい")
       end
-      it 'phone_number（-）が入っていると保存できないこと' do
+      it 'phone_numberに（-）が入っていると保存できないこと' do
         @buy_street.phone_number = "123456-7891234"
+        @buy_street.valid?
+        expect(@buy_street.errors.full_messages).to include("Phone number は11桁以内の半角数字で入力してくだい")
+      end
+      it 'phone_numberに数字意外が入っていると保存できないこと' do
+        @buy_street.phone_number = "accdc"
         @buy_street.valid?
         expect(@buy_street.errors.full_messages).to include("Phone number は11桁以内の半角数字で入力してくだい")
       end
