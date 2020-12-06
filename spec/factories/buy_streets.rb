@@ -3,7 +3,7 @@ FactoryBot.define do
     postal_code        { '123-4567' }
     prefecture_id      { 3 }
     municipality       { '津市'}
-    address            { 1-1 }
+    address            { "1-1" }
     building           {'○○ビル'}
     phone_number       {"09000000000"}
     token              {"tok_abcdefghijk00000000000000000"}
