@@ -65,6 +65,16 @@ require 'rails_helper'
         @buy_street.valid?
         expect(@buy_street.errors.full_messages).to include("Phone number は11桁以内の半角数字で入力してくだい")
       end
+      it 'user_idが空だと保存できないこと' do
+        @buy_street.user_id = nil
+        @buy_street.valid?
+        expect(@buy_street.errors.full_messages).to include("User can't be blank")
+      end
+        it 'item_idが空だと保存できないこと' do
+          @buy_street.item_id = nil
+          @buy_street.valid?
+          expect(@buy_street.errors.full_messages).to include("Item can't be blank")
+        end
       it "tokenが空では登録できないこと" do
         @buy_street.token = nil
         @buy_street.valid?
