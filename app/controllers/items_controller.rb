@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id != current_user.id  #アクセス制限ログインユーザー意外の人がurlから直接アクセス
+    if @item.user_id != current_user.id || @item.buy != nil #アクセス制限ログインユーザー意外の人がurlから直接アクセス
       redirect_to root_path
     end
   end
